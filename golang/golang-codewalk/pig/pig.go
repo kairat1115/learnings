@@ -9,6 +9,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 const (
@@ -110,6 +111,7 @@ func ratioString(vals ...int) string {
 }
 
 func main() {
+	rand.Seed(time.Now().UTC().UnixNano())
 	strategies := make([]strategy, win)
 	for k := range strategies {
 		strategies[k] = stayAtK(k + 1)
