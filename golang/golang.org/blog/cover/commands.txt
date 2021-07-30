@@ -1,0 +1,15 @@
+# show coverage
+go test -cover
+
+# generate coverage profile to file
+go test -coverprofile coverage.out
+
+# describe coverage by functions
+go tool cover -func coverage.out
+
+# show html with coverage GOAT
+go tool cover -html coverage.out
+
+# generate coverage profile with count mode of package "fmt"
+# set mode is default
+go test -covermode count -coverprofile count.out fmt
