@@ -1,5 +1,7 @@
 package rand
 
+// Link: https://blog.golang.org/cgo
+
 // #include <stdlib.h>
 import "C"
 import "unsafe"
