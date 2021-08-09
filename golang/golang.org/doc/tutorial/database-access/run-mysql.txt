@@ -1,0 +1,1 @@
+docker run --rm -d -p 3306:3306 --mount src=golang-tutorial-mysql,dst=/var/lib/mysql/ --mount src=golang-tutorial-mysql-secrets,dst=/run/secrets/ -e MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root.pwd -e MYSQL_USER=drrr -e MYSQL_PASSWORD_FILE=/run/secrets/mysql-user.pwd --name golang-tutorial-mysql mysql:8.0.26
