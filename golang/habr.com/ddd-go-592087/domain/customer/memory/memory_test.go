@@ -1,7 +1,6 @@
 package memory_test
 
 import (
-	"localmachine/habr-com/ddd-go-592087/aggregate"
 	"localmachine/habr-com/ddd-go-592087/domain/customer"
 	"localmachine/habr-com/ddd-go-592087/domain/customer/memory"
 	"testing"
@@ -17,7 +16,7 @@ func TestMemory_GetCustomer(t *testing.T) {
 	}
 
 	// Create a fake customer to add to repository
-	cust, err := aggregate.NewCustomer("Will Smith")
+	cust, err := customer.NewCustomer("Will Smith")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -68,7 +67,7 @@ func TestMemory_AddCustomer(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			repo := memory.New()
 
-			cust, err := aggregate.NewCustomer(tc.cust)
+			cust, err := customer.NewCustomer(tc.cust)
 			if err != nil {
 				t.Fatal(err)
 			}

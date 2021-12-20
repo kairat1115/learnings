@@ -1,4 +1,4 @@
-package entity
+package dddgo592087
 
 import "github.com/google/uuid"
 

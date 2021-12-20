@@ -1,7 +1,7 @@
-package aggregate_test
+package product_test
 
 import (
-	"localmachine/habr-com/ddd-go-592087/aggregate"
+	"localmachine/habr-com/ddd-go-592087/domain/product"
 	"testing"
 )
 
@@ -18,7 +18,7 @@ func TestProduct_NewProduct(t *testing.T) {
 		{
 			test:        "should return error if name is empty",
 			name:        "",
-			expectedErr: aggregate.ErrMissingValues,
+			expectedErr: product.ErrMissingValues,
 		}, {
 			test:        "validvalues",
 			name:        "test",
@@ -30,7 +30,7 @@ func TestProduct_NewProduct(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			_, err := aggregate.NewProduct(tc.name, tc.description, tc.price)
+			_, err := product.NewProduct(tc.name, tc.description, tc.price)
 			if err != tc.expectedErr {
 				t.Errorf("Expected error: %v, got: %v", tc.expectedErr, err)
 			}

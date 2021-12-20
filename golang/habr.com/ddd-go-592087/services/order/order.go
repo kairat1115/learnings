@@ -1,8 +1,7 @@
-package services
+package order
 
 import (
 	"context"
-	"localmachine/habr-com/ddd-go-592087/aggregate"
 	"localmachine/habr-com/ddd-go-592087/domain/customer"
 	customer_memory "localmachine/habr-com/ddd-go-592087/domain/customer/memory"
 	"localmachine/habr-com/ddd-go-592087/domain/customer/mongo"
@@ -66,7 +65,7 @@ func WithMongoCustomerRepository(connectionString string) OrderConfiguration {
 }
 
 // WithMemoryProductRepository adds a in memory product repo and adds all input products
-func WithMemoryProductRepository(products []aggregate.Product) OrderConfiguration {
+func WithMemoryProductRepository(products []product.Product) OrderConfiguration {
 	return func(os *OrderService) error {
 		// Create the memory repo, if we needed parameters, such as connection strings they could be inputted here
 		pr := product_memory.New()
@@ -87,7 +86,7 @@ func (o *OrderService) GetCustomers() customer.CustomerRepository {
 	return o.customers
 }
 
-func (o *OrderService) AddCustomer(customer *aggregate.Customer) error {
+func (o *OrderService) AddCustomer(customer *customer.Customer) error {
 	err := o.customers.Add(*customer)
 	return err
 }
@@ -108,7 +107,7 @@ func (o *OrderService) CreateOrder(cutomerID uuid.UUID, productsIDs []uuid.UUID)
 	}
 
 	// Get each Product
-	var products []aggregate.Product
+	var products []product.Product
 	var price float64
 	for _, id := range productsIDs {
 		p, err := o.products.GetByID(id)

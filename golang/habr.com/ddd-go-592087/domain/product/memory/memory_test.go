@@ -1,7 +1,6 @@
 package memory_test
 
 import (
-	"localmachine/habr-com/ddd-go-592087/aggregate"
 	"localmachine/habr-com/ddd-go-592087/domain/product"
 	"localmachine/habr-com/ddd-go-592087/domain/product/memory"
 	"testing"
@@ -11,7 +10,7 @@ import (
 
 func TestMemory_ProductRepositoryAdd(t *testing.T) {
 	repo := memory.New()
-	product, err := aggregate.NewProduct("Beef", "Good for your health", 1.99)
+	product, err := product.NewProduct("Beef", "Good for your health", 1.99)
 	if err != nil {
 		t.Error(err)
 	}
@@ -27,7 +26,7 @@ func TestMemory_ProductRepositoryAdd(t *testing.T) {
 
 func TestMemory_ProductRepositoryGet(t *testing.T) {
 	repo := memory.New()
-	existingProd, err := aggregate.NewProduct("Beef", "Good for your health", 1.99)
+	existingProd, err := product.NewProduct("Beef", "Good for your health", 1.99)
 	if err != nil {
 		t.Error(err)
 	}
@@ -70,7 +69,7 @@ func TestMemory_ProductRepositoryGet(t *testing.T) {
 
 func TestMemory_ProductRepositoryDelete(t *testing.T) {
 	repo := memory.New()
-	existingProd, err := aggregate.NewProduct("Beef", "Good for your health", 1.99)
+	existingProd, err := product.NewProduct("Beef", "Good for your health", 1.99)
 	if err != nil {
 		t.Error(err)
 	}
