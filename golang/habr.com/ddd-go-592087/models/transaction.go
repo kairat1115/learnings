@@ -1,4 +1,4 @@
-package dddgo592087
+package models
 
 import (
 	"time"

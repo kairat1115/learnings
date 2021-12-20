@@ -3,7 +3,7 @@ package product
 
 import (
 	"errors"
-	tavern "localmachine/habr-com/ddd-go-592087"
+	"localmachine/habr-com/ddd-go-592087/models"
 
 	"github.com/google/uuid"
 )
@@ -13,7 +13,7 @@ var ErrMissingValues = errors.New("missing values")
 // Product is a aggregate that combines item with a price and quantity
 type Product struct {
 	// item is the root entity which is an item
-	item  *tavern.Item
+	item  *models.Item
 	price float64
 	// Quantity is the number of products in stock
 	quantity int
@@ -24,7 +24,7 @@ func NewProduct(name, description string, price float64) (Product, error) {
 		return Product{}, ErrMissingValues
 	}
 	return Product{
-		item: &tavern.Item{
+		item: &models.Item{
 			ID:          uuid.New(),
 			Name:        name,
 			Description: description,
@@ -38,7 +38,7 @@ func (p Product) GetID() uuid.UUID {
 	return p.item.ID
 }
 
-func (p Product) GetItem() *tavern.Item {
+func (p Product) GetItem() *models.Item {
 	return p.item
 }
 

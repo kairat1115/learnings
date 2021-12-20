@@ -2,7 +2,7 @@ package customer
 
 import (
 	"errors"
-	tavern "localmachine/habr-com/ddd-go-592087"
+	"localmachine/habr-com/ddd-go-592087/models"
 
 	"github.com/google/uuid"
 )
@@ -13,11 +13,11 @@ var ErrInvalidPerson = errors.New("a customer has to have an valid person")
 type Customer struct {
 	// person is the root entity of a customer
 	// which means the person.ID is the main identifier for this aggregate
-	person *tavern.Person
+	person *models.Person
 	// a customer can hold many products
-	products []*tavern.Item
+	products []*models.Item
 	// a customer can perform many transactions
-	transactions []tavern.Transaction
+	transactions []models.Transaction
 }
 
 // NewCustomer is a factory to create a new Customer aggregate
@@ -28,7 +28,7 @@ func NewCustomer(name string) (Customer, error) {
 	}
 
 	// Create a new person and generate ID
-	person := &tavern.Person{
+	person := &models.Person{
 		Name: name,
 		ID:   uuid.New(),
 	}
@@ -36,8 +36,8 @@ func NewCustomer(name string) (Customer, error) {
 	// Create a customer object and initialize all the values to avoid nil pointer exceptions
 	return Customer{
 		person:       person,
-		products:     make([]*tavern.Item, 0),
-		transactions: make([]tavern.Transaction, 0),
+		products:     make([]*models.Item, 0),
+		transactions: make([]models.Transaction, 0),
 	}, nil
 }
 
@@ -47,14 +47,14 @@ func (c *Customer) GetID() uuid.UUID {
 
 func (c *Customer) SetID(id uuid.UUID) {
 	if c.person == nil {
-		c.person = &tavern.Person{}
+		c.person = &models.Person{}
 	}
 	c.person.ID = id
 }
 
 func (c *Customer) SetName(name string) {
 	if c.person == nil {
-		c.person = &tavern.Person{}
+		c.person = &models.Person{}
 	}
 	c.person.Name = name
 }
