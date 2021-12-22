@@ -1,0 +1,1 @@
+Start-Process -FilePath "powershell" -Verb RunAs -ArgumentList ("-NoExit","cd {0}" -f (Get-Location).Path)
