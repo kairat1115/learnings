@@ -1,7 +1,7 @@
 package main
 
 import (
-	server "learn-go-with-tests/http-server"
+	server "learn-go-with-tests/build-an-application"
 	"log"
 	"net/http"
 )
