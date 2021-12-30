@@ -12,7 +12,7 @@ func TestTexasHoldemGame_Start(t *testing.T) {
 		blindAlerter := &poker.SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(dummyPlayerStore, blindAlerter)
 
-		game.Start(5)
+		game.Start(5, dummyStdOut)
 
 		cases := []poker.ScheduledAlert{
 			{0 * time.Second, 100},
@@ -34,7 +34,7 @@ func TestTexasHoldemGame_Start(t *testing.T) {
 		blindAlerter := &poker.SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(dummyPlayerStore, blindAlerter)
 
-		game.Start(7)
+		game.Start(7, dummyStdOut)
 
 		cases := []poker.ScheduledAlert{
 			{0 * time.Second, 100},
