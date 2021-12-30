@@ -104,7 +104,6 @@ func TestGame(t *testing.T) {
 	t.Run("when we get a message over. a websocket it is a winner of a game", func(t *testing.T) {
 		wantedBlindAlert := "Blind is now 100"
 		winner := "Ruth"
-		tenMS := 10 * time.Millisecond
 
 		game := &SpyGame{BlindAlert: []byte(wantedBlindAlert)}
 		server := httptest.NewServer(mustMakePlayerServer(t, &StubPlayerStore{}, game))
@@ -119,7 +118,7 @@ func TestGame(t *testing.T) {
 
 		AssertGameStartedWith(t, game, 3)
 		AssertGameFinishedWith(t, game, winner)
-		within(t, tenMS, func() { AssertWebsocketGotMsg(t, ws, wantedBlindAlert) })
+		within(t, 10*time.Millisecond, func() { AssertWebsocketGotMsg(t, ws, wantedBlindAlert) })
 	})
 }
 
